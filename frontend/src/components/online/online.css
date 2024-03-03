@@ -1,0 +1,34 @@
+.sidebarFriend{
+    display: flex;
+    align-items: center;
+   margin-bottom: 15px;
+   font-size: 20px;
+   
+    
+}
+
+.sidebarFriendImg{
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid #8e7cc3;
+    
+    
+}
+
+.activeImageWrapper{
+    position: relative;
+}
+
+.activeDot{
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: rgb(41, 191, 71);
+    position: absolute;
+   left: 5px;
+   border: 1px solid #8e7cc3;
+
+}

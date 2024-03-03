@@ -1,0 +1,235 @@
+.rightbar{
+    flex: 3.5;
+    height: calc(100vh - 50px);
+    background-color: white;
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+    margin-right: 10px;
+
+}
+
+.rightBarWrapper{
+    padding: 20px;
+}
+
+.addFriendContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.addFriendText{
+    font-size: 24px;
+    color: #7058b6;
+}
+.rightbarFollowBtn{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 140px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: #8e7cc3;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+}
+.rightbarFollowBtn:hover{
+    background-color: #e7eca3;
+    color: black;
+}
+
+.topContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    border-radius: 10px;
+}
+
+.gridTitle{
+    font-size: 32px;
+    margin-bottom: 5px;
+    color: #8e7cc3;
+    text-align: center;
+}
+
+.topGrid{
+    padding: 10px;
+    display: grid;
+    gap: 20px 20px;
+    grid-template-columns: auto auto auto;
+ 
+}
+
+.topGridItem{
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.profilePic{
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.topGridItemProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.seeMoreButton{
+    width: 150px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: #8e7cc3;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.seeMoreButton:hover{
+    background-color: #e7eca3;
+    color: black;
+}
+.centralContainer{
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    border-radius: 10px;
+    
+}
+
+.centralTitle{
+    font-size: 32px;
+    color: #8e7cc3;
+}
+
+.centralGrid{
+    padding: 10px;
+    margin-top: 10px 0;
+    display: grid;
+    gap: 15px 30px;
+    grid-template-columns: auto auto;
+
+}
+
+.centralGridItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.profileRightTopContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    border-radius: 10px;
+}
+
+.discoverImage{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.discoverLikes{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.discoverName{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.discoverButton{
+  
+        width: 150px;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 16px;
+        background-color: #8e7cc3;
+        color: white;
+        cursor: pointer;
+        
+  
+}
+
+.discoverButton:hover{
+    background-color: #e7eca3;
+    color: black;
+}
+
+.seeMore{
+    font-size: 64px !important; 
+    cursor: pointer;
+    color: #8e7cc3;
+}
+
+.seeMore:hover{
+    color: #e7eca3;
+}
+.profileRightBotContainer{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    border-radius: 10px;
+}
+.imageGrid{
+    padding: 10px;
+    margin-top: 10px 0;
+    display: grid;
+    gap: 15px 30px;
+    grid-template-columns: auto auto;
+}
+.mostLikedImage{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+}

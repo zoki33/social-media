@@ -1,0 +1,107 @@
+.post{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+  box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+  -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+  -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+}
+
+.postWrapper{
+    padding: 10px;
+    
+}
+
+.postTop{
+    display: flex;
+    align-items: center;
+}
+
+
+.postInfo{
+    font-size: 20px;
+}
+
+.timeInfo{
+    font-size: 14px;
+}
+
+.profileImage{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.postMain{
+    margin-top: 10px;
+}
+
+.strongInfo{
+    cursor: pointer;
+}
+
+.postImage{
+ margin-top: 10px;
+ width: 100%;
+ max-height: 500px;
+ object-fit: fill;
+
+ 
+
+}
+
+.postText{
+    font-size: 18px;
+}
+
+
+.moreInfo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+
+    
+}
+
+.likesIcon{
+ color: #8e7cc3;
+}
+
+.commIcon{
+    color: #bcc265;
+}
+
+.postLikesComms{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+}
+
+
+.postBottom{
+    padding: 10px;
+}
+
+.postOptions{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    
+}
+
+.postOption{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+
+
