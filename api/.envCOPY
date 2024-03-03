@@ -1,0 +1,1 @@
+MONG0_URL = mongodb+srv://<username>:<password>@socialmediacluster.1skxkkm.mongodb.net/?retryWrites=true&w=majority
