@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
+const paginate = require("../middleware/PaginateResults.js");
+const Comment = require("../models/Comment.js");
 
 //create a post
 router.post("/", async (req, res) => {
@@ -59,9 +61,16 @@ router.put("/:id/like", async (req, res) => {
 router.put("/:id/comment", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+    const newComment = new Comment({
+      userId: req.body.userId,
+      postId: post._id,
+      comment: req.body.comment,
+    });
     await post.updateOne({
       $push: {
-        comments: { userId: req.body.userId, comment: req.body.comment },
+        comments: {
+          newComment,
+        },
       },
     });
     res.status(200).json("Comment added");
@@ -74,23 +83,53 @@ router.put("/:id/comment", async (req, res) => {
 router.get("/:id/comments", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    const comments = post.comments;
+    const page = +req.query.page || 1; // Default page to 1 if not provided
+    const per_page = +req.query.per_page || 5; // Default per_page to 10 if not provided
 
-    const commentsPromises = comments.map(async (comment) => {
+    const startIndex = (page - 1) * per_page;
+    const endIndex = page * per_page;
+
+    const results = {};
+
+    const totalComments = await Comment.countDocuments({
+      postId: post._id,
+    }).exec();
+
+    if (endIndex < totalComments) {
+      results.next = {
+        page: page + 1,
+        per_page: per_page,
+      };
+    }
+
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        per_page: per_page,
+      };
+    }
+
+    results.results = await Comment.find({ postId: post._id })
+      .limit(per_page)
+      .skip(startIndex)
+      .exec();
+
+    const commentsPromises = results.results.map(async (comment) => {
       const commentUser = await User.findById(comment.userId).select(
         "username profilePicture"
       );
       return {
         user: commentUser,
         comment: comment.comment,
+        createdAt: comment.createdAt,
       };
     });
 
     const commentsResolved = await Promise.all(commentsPromises);
-    const commentPromisesflat = commentsResolved.flat();
 
-    res.status(200).json(commentPromisesflat);
+    res.status(200).json({ comments: commentsResolved, pagination: results });
   } catch (error) {
+    console.error(error);
     res.status(500).json(error);
   }
 });

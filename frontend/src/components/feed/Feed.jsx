@@ -29,12 +29,29 @@ const Feed = ({ username, feed }) => {
     fetchPosts();
   }, [username, user._id]);
 
+  const updatePostWithComment = (index, newComment) => {
+    const updatedPosts = [...posts];
+
+    updatedPosts[index] = {
+      ...updatedPosts[index],
+      comments: [...updatedPosts[index].userPost.comments, newComment],
+    };
+
+    setPosts(updatedPosts);
+  };
+
   return (
     <div className="feed">
       <div className="feedWrapper">
         {username === user.username ? <Share /> : feed && <Share />}
-        {posts.map((post) => (
-          <Post key={post.userPost._id} post={post.userPost} user={post.user} />
+        {posts.map((post, index) => (
+          <Post
+            key={index}
+            index={index}
+            post={post.userPost}
+            user={post.user}
+            updatePostWithComment={updatePostWithComment}
+          />
         ))}
       </div>
     </div>

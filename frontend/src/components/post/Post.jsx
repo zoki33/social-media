@@ -3,17 +3,19 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import ShareIcon from "@mui/icons-material/Share";
 import CommentIcon from "@mui/icons-material/Comment";
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import CommentWrapper from "../comment/CommentWrapper";
 
-const Post = ({ post, profile, user }) => {
+const Post = ({ post, profile, user, index, updatePostWithComment }) => {
   const [like, setLike] = useState(post.likes.length);
-  const [comments, setComments] = useState();
   const [showComments, setShowComments] = useState(false);
+  const [addComment, setAddComment] = useState(false);
+  const [comment, setComment] = useState("");
   const [isLiked, setIsLiked] = useState(false);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
@@ -25,46 +27,30 @@ const Post = ({ post, profile, user }) => {
   const likeHandler = () => {
     try {
       axios.put(`/posts/${post._id}/like`, { userId: currentUser._id });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
-  const fetchComments = useCallback(async () => {
+  const commentHandler = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.get(`/posts/${post._id}/comments`);
-      setComments(response.data);
+      const res = await axios.put(`/posts/${post._id}/comment`, {
+        userId: currentUser._id,
+        postId: post._id,
+        comment: comment,
+      });
+
+      updatePostWithComment(index, res.data.comment);
+
+      setShowComments(true);
+      setAddComment(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
-  }, []);
-
-  const ShowCommentsHandler = () => {
-    fetchComments();
-    return (
-      <>
-        <ul>
-          {comments &&
-            comments.map((comment, index) => (
-              <li key={index}>
-                {comment.comment} by {comment.user.username}
-              </li>
-            ))}
-        </ul>
-      </>
-    );
   };
-
-  // const commentHandler = () => {
-  //   try {
-  //     axios.put(`/posts/${post._id}/comment`, {
-  //       userId: currentUser._id,
-  //       comment: comment,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   return (
     <div className="post">
       <div className="postWrapper">
@@ -105,7 +91,7 @@ const Post = ({ post, profile, user }) => {
               <CommentIcon className="commIcon" />
               <span
                 className="likesNumber"
-                onClick={() => setShowComments(true)}
+                onClick={() => setShowComments(!showComments)}
               >
                 {post.comments.length} comments
               </span>
@@ -131,7 +117,10 @@ const Post = ({ post, profile, user }) => {
                 </>
               )}
             </div>
-            <div className="postOption">
+            <div
+              className="postOption"
+              onClick={() => setAddComment(!addComment)}
+            >
               <span className="optionText">Comment</span>
               <AddCommentIcon className="optionIcon" />
             </div>
@@ -141,7 +130,40 @@ const Post = ({ post, profile, user }) => {
             </div>
           </div>
         </div>
-        {showComments && <ShowCommentsHandler />}
+        {addComment && (
+          <form className="addCommentContainer" onSubmit={commentHandler}>
+            <div className="commentInputContainer">
+              <Link to={profile ? "" : `/profile/${user.username}`}>
+                <img
+                  src={
+                    user.profilePicture
+                      ? PF + user.profilePicture
+                      : PF + "/noAvatar.png"
+                  }
+                  alt=""
+                  className="profileImage"
+                />
+              </Link>
+              <textarea
+                placeholder="Type your comment here..."
+                className="commentInput"
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </div>
+            {comment !== "" ? (
+              <button type="submit" className="addCommentButton">
+                Add Comment
+              </button>
+            ) : (
+              <button type="submit" className="addCommentButton" disabled>
+                Add Comment
+              </button>
+            )}
+          </form>
+        )}
+        {post.comments.length > 0
+          ? showComments && <CommentWrapper post={post} />
+          : showComments && "No comments to show!"}
       </div>
     </div>
   );

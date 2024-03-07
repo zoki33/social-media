@@ -102,6 +102,62 @@
     gap: 5px;
     cursor: pointer;
 }
+.addCommentContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    
+
+}
+.commentInputContainer{
+display: flex;
+border-radius: 10px;
+    box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+    -moz-box-shadow: 0px 0px 19px 8px rgba(142,124,195,0.4);
+
+padding: 5px;
+
+}
+
+.commentInput{
+    width: 100%;
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    resize:vertical;
+}
+
+.commentInput:focus{
+    outline: none;
+}
+
+.addCommentButton{
+    align-self: center;
+    height: 40px;
+    width: 100px;
+    background-color: #8e7cc3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.addCommentButton:hover:enabled{
+    background-color: #e7eca3;
+    color: black;
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
 
 
 
