@@ -17,7 +17,6 @@ const CommentWrapper = ({ post }) => {
             per_page: 5,
           },
         });
-        console.log(response.data);
         setComments(response.data.comments);
       } catch (error) {
         console.error(error);
